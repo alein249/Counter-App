@@ -19,35 +19,42 @@ public class MainActivity extends AppCompatActivity {
         // To create layout using layout inflater
         b = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(b.getRoot());
+
+        //Handle click events
         setupEventHandlers();
     }
 
+    /**
+     * Trigger Event handlers to listen the actions
+     */
     private void setupEventHandlers() {
-        b.incBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Calling increase function
-                incQty();
-            }
-
+        //click listener on Increase button
+        b.incBtn.setOnClickListener(v -> {
+            // Calling increase function
+            incQty();
         });
-        b.decBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Calling decrease function
-                decQty();
-            }
+        //click listener on Decrease button
+        b.decBtn.setOnClickListener(v -> {
+            // Calling decrease function
+            decQty();
         });
     }
-   // To decrease the quantity and update the result in Text View
 
+    /**
+     * Decrease the quantity
+     * update TextView
+     */
     public void decQty() {
-
+        //update quantity and textView
         b.qty.setText("" + --qty);
     }
-    //To increase the quantity and update the result in Text View
 
+    /**
+     * Increase the quantity
+     * update TextView
+     */
     public void incQty() {
+        //update quantity and textView
         b.qty.setText("" + ++qty);
     }
 }
