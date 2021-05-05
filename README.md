@@ -17,3 +17,7 @@
 ![lf](https://github.com/alein249/Counter-App/blob/master/app/src/main/res/drawable/counterapp1.jpg)
 
 ![lf](https://github.com/alein249/Counter-App/blob/master/app/src/main/res/drawable/counterapp2.jpg)
+
+# Download APK from here
+
+[APK](https://github.com/alein249/Counter-App/releases/download/Counterapp/app-release.apk)
