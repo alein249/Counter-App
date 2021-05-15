@@ -1,16 +1,20 @@
 package com.streamliners.counterapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.View;
 
 import com.streamliners.counterapp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-    private int qty = 0;
-    private ActivityMainBinding b;
+    int qty = 0;
+    ActivityMainBinding b;
+
+    private String COUNT_VALUE = "countValue";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +26,26 @@ public class MainActivity extends AppCompatActivity {
 
         //Handle click events
         setupEventHandlers();
+
+        //Handle Configuration Changes
+        handleConfigurationChanges(savedInstanceState);
+    }
+
+    /**
+     * Handle data on configuration change
+     * @param savedInstanceState To get data from bundle
+     */
+
+    private void handleConfigurationChanges(Bundle savedInstanceState) {
+        //Check savedInstanceState not null
+        if(savedInstanceState != null){
+            qty = savedInstanceState.getInt(COUNT_VALUE);
+        }
+        else{
+            //Get data from shredPreference
+            qty = getPreferences(MODE_PRIVATE).getInt(COUNT_VALUE, 0);
+        }
+        b.qty.setText(qty + "");
     }
 
     /**
@@ -56,5 +80,17 @@ public class MainActivity extends AppCompatActivity {
     public void incQty() {
         //update quantity and textView
         b.qty.setText("" + ++qty);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(COUNT_VALUE, qty);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        getPreferences(MODE_PRIVATE).edit().putInt(COUNT_VALUE, qty).apply();
     }
 }
