@@ -22,4 +22,4 @@
 
 # Download APK from here
 
-[APK](https://github.com/alein249/Counter-App/releases/download/Counterapp/app-release.apk)
+[APK](https://github.com/alein249/Counter-App/releases/download/latest/app-debug.apk)
